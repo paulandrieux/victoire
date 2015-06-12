@@ -9,7 +9,7 @@ before_script:
   - phpenv config-add travis.php.ini
 
   - npm install less
-  - composer install --dev --prefer-dist
+  - composer install --dev --prefer-dist --no-interaction
   # Prepare database
   - php Tests/Functionnal/bin/console --env=test doctrine:database:create
   - php Tests/Functionnal/bin/console --env=test cache:warmup
