@@ -1,28 +1,19 @@
+.vic-hb-icon {
+    fill: rgb(255, 255, 255);
+    fill-rule: evenodd;
+}
+
+.vic-hb-icon__rect {
+    width: 42px;
+    height: 8px;
+}
+
 .vic-menu-leftnavbar-trigger {
-    i {
-        width: @vic-menu-leftnavbar-trigger-width;
-        height: 100%;
-        display: inline-block;
-        background-image: url(@vic-menu-leftnavbar-trigger-icon);
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    &:hover {
-        i {
-            background-image: url(@vic-menu-leftnavbar-trigger-iconHover);
-        }
-    }
-
-    &.is-in {
-        i {
-            background-image: url(@vic-menu-leftnavbar-trigger-iconIsIn);
-        }
-
-        &:hover {
-            i {
-                background-image: url(@vic-menu-leftnavbar-trigger-iconIsInHover);
-            }
+    &:hover,
+    &.is-in,
+    &:hover.is-in {
+        .vic-hb-icon {
+            fill: rgb(4, 191, 150);
         }
     }
 }
