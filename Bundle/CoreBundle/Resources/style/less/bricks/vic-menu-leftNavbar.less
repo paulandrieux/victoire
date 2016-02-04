@@ -9,6 +9,11 @@
 }
 
 .vic-menu-leftnavbar-trigger {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     &:hover,
     &.is-in,
     &:hover.is-in {
@@ -28,7 +33,7 @@
     position: fixed;
     top: @vic-menu-main-height;
     bottom: 0;
-    left: @vic-menu-leftnavbar-width * -1 - 10px;
+    left: @vic-menu-leftnavbar-width * -1 - 8px;
     width: @vic-menu-leftnavbar-width;
     padding-top: @vic-menu-leftnavbar-paddingTop;
     background-color: @vic-menu-main-backgroundColor;
@@ -38,9 +43,10 @@
     z-index: 1000;
     .transition(@vic-menu-leftnavbar-animation);
     .box-shadow(@vic-menu-leftnavbar-shadow);
+    will-change: transform;
 
     &.is-in {
-        left: 0;
+        transform: translateX(@vic-menu-leftnavbar-width + 8px);
         .transition(@vic-menu-leftnavbar-animation);
     }
 
