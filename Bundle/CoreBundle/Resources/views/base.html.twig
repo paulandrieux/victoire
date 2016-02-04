@@ -1,22 +1,111 @@
 {% trans_default_domain "victoire" %}
 <!DOCTYPE html>
-<html ng-app="ngApp" lang="{{ app.request.locale|split('_')[0] }}">
+<html lang="{{ app.request.locale|split('_')[0] }}" {% block html_attrs %}{% endblock html_attrs %}>
     <head>
+        <!-- START meta -->
         {% block meta %}
             {% include 'VictoireSeoBundle::_meta.html.twig' %}
         {% endblock meta %}
-        {% block head_script %}{% endblock %}
-        {% block head_style %}{% endblock %}
+        <!-- END meta -->
+
+        <!-- START head script -->
+        {% block head_script %}
+            {% if is_granted('ROLE_VICTOIRE') %}
+                {% javascripts injector="victoire-head" %}
+                    <script src="{{ asset_url }}"></script>
+                {% endjavascripts %}
+            {% endif %}
+
+            {% javascripts injector="head" %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        {% endblock head_script %}
+        <!-- END head script -->
+
+        <!-- START head style -->
+        {% block head_style %}
+            {% stylesheets filter='less, cssrewrite' injector="head" %}
+                <link href="{{ asset_url }}" rel="stylesheet"/>
+            {% endstylesheets %}
+
+            {% if is_granted('ROLE_VICTOIRE') or app.request.attributes.get('_route') == 'fos_user_security_login' %}
+                {% stylesheets filter='less, cssrewrite' injector="victoire-edit, alertify-codrops-notification" %}
+                    <link href="{{ asset_url }}" rel="stylesheet"/>
+                {% endstylesheets %}
+            {% endif %}
+        {% endblock head_style %}
+        <!-- END head style -->
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body {% block container_attributes %}{% endblock container_attributes %} class="{% block container_class %}{% endblock container_class %}"  ng-controller="PageController as pageCtrl" ng-init="init({% if view is defined %}'{{ view.cssHash }}'{% endif %})">
         {{ cms_page_css() }}
+
         {% block body %}{% endblock %}
-        {% block foot_script %}{% endblock %}
+
+        <!-- START foot script -->
+        {% block foot_script %}
+            {% if view is defined %}
+                <script>
+                    var viewReferenceId = '{{ vic_current_page_reference() }}';
+                </script>
+
+                {{ render_hinclude(controller('VictoireAnalyticsBundle:BrowseEvent:track', {'viewReferenceId': vic_current_page_reference(), 'referer': app.request.headers.get('referer')})) }}
+            {% endif %}
+
+            {% if is_granted('ROLE_VICTOIRE') %}
+                {% javascripts injector='victoire-edit, victoire-leftnavbar' %}
+                    <script src="{{ asset_url }}"></script>
+                {% endjavascripts %}
+            {% endif %}
+
+            {% if is_granted('ROLE_VICTOIRE') %}
+                <script>
+                    $vic(document).ready(function() {
+                        $vic('a#media-manager').on('click', function(ev) {
+                            ev.preventDefault();
+                            openDGDialog("{{ path('VictoireMediaBundle_folder_show', {'folderId': 1} ) }}", 1050, 600);
+                        });
+                    });
+                </script>
+            {% endif %}
+
+            <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+
+            <script>
+                var locale = '{{ app.request.locale }}';
+                var debug = {{ app.debug ? "true" : "false" }};
+            </script>
+
+            {% if app.environment == "test" or app.environment == "domain" %}
+                <script src="/js/fos_js_routes_{{ app.environment }}.js"></script>
+            {% else %}
+                <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+            {% endif %}
+
+            {% javascripts injector="foot, alertify-codrops-notification" %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            {% block alertify %}
+                {{ app.session|alertify|raw }}
+            {% endblock %}
+        {% endblock foot_script %}
+        <!-- END foot script -->
+
+        <!-- START foot script additional -->
         {% block foot_script_additional %}{% endblock %}
+        <!-- END foot script additional -->
+
         {% block javascript %}{% endblock %}
+
+        <!-- START userVoice -->
         {% if is_granted('ROLE_VICTOIRE') %}
             {% include 'VictoireCoreBundle::_userVoice.html.twig' %}
         {% endif %}
+        <!-- END userVoice -->
     </body>
 </html>
