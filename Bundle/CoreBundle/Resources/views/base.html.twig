@@ -1,10 +1,11 @@
 {% trans_default_domain "victoire" %}
 <!DOCTYPE html>
-<html lang="{{ app.request.locale|split('_')[0] }}" {% block html_attrs %}{% endblock html_attrs %}>
+<html lang="{{ app.request.locale|split('_')[0] }}" {% block html_attrs %}{% endblock %}>
     <head>
         <!-- START meta -->
         {% block meta %}
             {% include 'VictoireSeoBundle::_meta.html.twig' %}
+            <title>{% block title %}Victoire DCMS{% endblock title %}</title>
         {% endblock meta %}
         <!-- END meta -->
 
@@ -41,8 +42,16 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
-    <body {% block container_attributes %}{% endblock container_attributes %} class="{% block container_class %}{% endblock container_class %}"  ng-controller="PageController as pageCtrl" ng-init="init({% if view is defined %}'{{ view.cssHash }}'{% endif %})">
+    <body {% block container_attributes %}{% if app.session.get('victoire.edit_mode') %}role="{{ app.session.get('victoire.edit_mode') }}"{% endif %}{% endblock container_attributes %} class="{% block container_class %}{% endblock container_class %}"  ng-controller="PageController as pageCtrl" ng-init="init({% if view is defined %}'{{ view.cssHash }}'{% endif %})">
         {{ cms_page_css() }}
+
+        {% block admin_navbar %}
+            <!-- START victoire admin navbar -->
+            {% if is_granted('ROLE_VICTOIRE') %}
+                {% include 'VictoireCoreBundle:Menu:admin_navbar.html.twig' %}
+            {% endif %}
+            <!-- END victoire admin navbar -->
+        {% endblock admin_navbar %}
 
         {% block body %}{% endblock %}
 
