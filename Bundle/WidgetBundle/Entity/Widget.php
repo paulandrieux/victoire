@@ -3,6 +3,7 @@
 namespace Victoire\Bundle\WidgetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Victoire\Bundle\CoreBundle\Entity\BaseEntityProxy;
 use Victoire\Bundle\CoreBundle\Entity\View;
 use Victoire\Bundle\QueryBundle\Entity\Traits\QueryTrait;
@@ -22,6 +23,7 @@ class Widget extends BaseWidget
 {
     use StyleTrait;
     use QueryTrait;
+    use TimestampableEntity;
 
     public function __construct()
     {
