@@ -98,7 +98,7 @@ abstract class ViewType extends AbstractType
                     ],
                 ],
             ];
-            if ($view instanceof BasePage && $view->getId() && !$view->isHomepage()) {
+            if ($view instanceof BusinessTemplate || ($view instanceof BasePage && $view->getId() && !$view->isHomepage())) {
                 $translationOptions['fields']['slug'] = [
                     'label'      => 'form.page.type.slug.label',
                     'field_type' => UrlvalidatedType::class,
