@@ -27,7 +27,7 @@ class LinkExtension extends \Twig_Extension
     protected $router;
     protected $analytics;
     protected $businessEntityHelper;
-    protected $BusinessPageHelper;
+    public $businessPageHelper;
     protected $pageHelper;
     protected $em;
     protected $errorPageRepository;
@@ -41,7 +41,7 @@ class LinkExtension extends \Twig_Extension
      * @param RequestStack         $requestStack
      * @param string               $analytics
      * @param BusinessEntityHelper $businessEntityHelper
-     * @param BusinessPageHelper   $BusinessPageHelper
+     * @param BusinessPageHelper   $businessPageHelper
      * @param PageHelper           $pageHelper
      * @param EntityManager        $em
      * @param LoggerInterface      $logger
@@ -54,7 +54,7 @@ class LinkExtension extends \Twig_Extension
         RequestStack $requestStack,
         $analytics,
         BusinessEntityHelper $businessEntityHelper,
-        BusinessPageHelper $BusinessPageHelper,
+        BusinessPageHelper $businessPageHelper,
         PageHelper $pageHelper,
         EntityManager $em,
         LoggerInterface $logger,
@@ -66,7 +66,7 @@ class LinkExtension extends \Twig_Extension
         $this->request = $requestStack->getCurrentRequest();
         $this->analytics = $analytics;
         $this->businessEntityHelper = $businessEntityHelper;
-        $this->BusinessPageHelper = $BusinessPageHelper;
+        $this->businessPageHelper = $businessPageHelper;
         $this->pageHelper = $pageHelper;
         $this->em = $em;
         $this->errorPageRepository = $errorPageRepository;
@@ -253,7 +253,7 @@ class LinkExtension extends \Twig_Extension
             $templateId = $this->abstractBusinessTemplates[$templateId];
         }
         if (!$templateId) {
-            $templateId = $this->BusinessPageHelper
+            $templateId = $this->businessPageHelper
                 ->guessBestPatternIdForEntity(new \ReflectionClass($businessEntityInstance), $businessEntityInstance->getId(), $this->em);
         }
 
