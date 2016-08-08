@@ -110,6 +110,9 @@ class WidgetController extends Controller
             $view->setReference($reference);
 
             $position = $request->query->has('position') ? $request->query->get('position') : null;
+            if ($originalWidget = $request->query->get('originalWidget')) {
+                $originalWidget = $this->get('doctrine.orm.entity_manager')->getRepository('VictoireWidgetBundle:Widget')->find($originalWidget);
+            }
             $parentWidgetMap = $request->query->has('parentWidgetMap') ? $request->query->get('parentWidgetMap') : null;
             $widgetData = $this->get('victoire_widget.widget_manager')->newWidget(
                 Widget::MODE_STATIC,
@@ -118,7 +121,8 @@ class WidgetController extends Controller
                 $view,
                 $position,
                 $parentWidgetMap,
-                $quantum
+                $quantum,
+                $originalWidget
             );
 
             $response = new JsonResponse([

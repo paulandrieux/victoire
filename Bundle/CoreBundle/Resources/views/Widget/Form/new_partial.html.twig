@@ -1,5 +1,5 @@
 
-<div class="vic-tab-quantum vic-tab-pane{% if forms.active is defined and forms.active == true %} vic-active{% endif %}" id="widget-{{ id }}-tab-pane">
+<div class="vic-tab-quantum vic-tab-pane{% if forms.active is defined and forms.active == true %} vic-active{% endif %}" id="widget-{{ id }}-tab-pane" data-widget-id="{{ id }}">
 
     {% if widget.id and widget.widgetMap.view != view %}
         <div class="vic-alert vic-alert-warning vic-alert-dismissible">

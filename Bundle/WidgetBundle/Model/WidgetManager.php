@@ -6,8 +6,10 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\Form\Tests\ChoiceList\Factory\PropertyAccessDecoratorTest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Victoire\Bundle\BusinessEntityBundle\Entity\BusinessEntity;
 use Victoire\Bundle\BusinessEntityBundle\Reader\BusinessEntityCacheReader;
 use Victoire\Bundle\BusinessPageBundle\Entity\VirtualBusinessPage;
@@ -101,10 +103,15 @@ class WidgetManager
      *
      * @return array
      */
-    public function newWidget($mode, $type, $slot, $view, $position, $parentWidgetMap, $quantum)
+    public function newWidget($mode, $type, $slot, $view, $position, $parentWidgetMap, $quantum, Widget $widget = null)
     {
-        $widget = $this->widgetHelper->newWidgetInstance($type, $view, $slot, $mode);
-        $widgets = ['static' => $widget];
+        if (!$widget) {
+            $widget = $this->widgetHelper->newWidgetInstance($type, $view, $slot, $mode);
+            $widgets = ['static' => $widget];
+        } else {
+            $widget = $this->duplicateWidgetStyle($widget);
+            $widgets = [$widget->getMode() => $widget];
+        }
 
         /** @var BusinessEntity[] $classes */
         $classes = $this->cacheReader->getBusinessClassesForWidget($widget);
@@ -395,5 +402,79 @@ class WidgetManager
         $this->entityManager->persist($entityCopy);
 
         return $entityCopy;
+    }
+
+    private function duplicateWidgetStyle(Widget $widget)
+    {
+        $propertyAccessor = new PropertyAccessor();
+        $widgetClass = get_class($widget);
+        $duplicate = new $widgetClass();
+
+        $styleTrait = new \ReflectionClass('Victoire\Bundle\WidgetBundle\Entity\Traits\StyleTrait');
+
+        foreach ($styleTrait->getProperties() as $property) {
+            if (!$property->isStatic()) {
+                $value = $propertyAccessor->getValue($widget, $property->getName());
+                $propertyAccessor->setValue($duplicate, $property->getName(), $value);
+            }
+        }
+        foreach ($styleTrait->getTraits() as $responsiveTrait) {
+            foreach ($responsiveTrait->getProperties() as $property) {
+                if (!$property->isStatic()) {
+                    $value = $propertyAccessor->getValue($widget, $property->getName());
+                    $propertyAccessor->setValue($duplicate, $property->getName(), $value);
+                }
+            }
+        }
+
+        return $duplicate;
+    }
+
+    /**
+     * Finds the trait that declares $className::$propertyName
+     */
+    private function getDeclaringTraitForProperty($className, $propertyName) {
+        $reflectionClass = new \ReflectionClass($className);
+
+        // Let's scan all traits
+        $trait = $this->deepScanTraitsForProperty($reflectionClass->getTraits(), $propertyName);
+        if ($trait != null) {
+            return $trait;
+        }
+        // The property is not part of the traits, let's find in which parent it is part of.
+        if ($reflectionClass->getParentClass()) {
+            $declaringClass = $this->getDeclaringTraitForProperty($reflectionClass->getParentClass()->getName(), $propertyName);
+            if ($declaringClass != null) {
+                return $declaringClass;
+            }
+        }
+        if ($reflectionClass->hasProperty($propertyName)) {
+            return $reflectionClass;
+
+        }
+
+        return null;
+    }
+
+    /**
+     * Recursive method called to detect a method into a nested array of traits.
+     *
+     * @param $traits \ReflectionClass[]
+     * @param $propertyName string
+     * @return \ReflectionClass|null
+     */
+    private function deepScanTraitsForProperty(array $traits, $propertyName) {
+        foreach ($traits as $trait) {
+            // If the trait has a property, it's a win!
+            $result = $this->deepScanTraitsForProperty($trait->getTraits(), $propertyName);
+            if ($result != null) {
+                return $result;
+            } else {
+                if ($trait->hasProperty($propertyName)) {
+                    return $trait;
+                }
+            }
+        }
+        return null;
     }
 }

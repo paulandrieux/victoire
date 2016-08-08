@@ -103,6 +103,7 @@ $vic(document).on('click', 'a#widget-new-tab', function(event) {
         position: $vic(this).data('position'),
         parentWidgetMap: $vic(this).data('parentwidgetmap'),
         quantum: $vic(this).parents('ul').children('li').length,
+        originalWidget: $vic('.vic-tab-quantum.vic-active').data('widgetId'),
         _locale: locale
     });
     $vic.ajax({
