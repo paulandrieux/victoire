@@ -1,0 +1,35 @@
+<div class="vic-style-container">
+    <a class="vic-pull-right" href="#" onclick="toggleStyleTab(this);">
+        Style <i class="fa fa-pencil"></i>
+    </a>
+    <div style="display: none" class="vic-style-form-container">
+
+        <div class="vic-row">
+            <div class="vic-col-sm-6 vic-col-md-4">{{ form_row(form.containerTag) }}</div>
+            <div class="vic-col-sm-6 vic-col-md-4">{{ form_row(form.containerClass) }}</div>
+            {% if form.theme is defined and form.theme %}<div class="vic-col-sm-6 vic-col-md-4">{{ form_row(form.theme) }}</div>{% endif %}
+        </div>
+        <hr>
+        <div class="vic-row">
+            <div class="vic-col-md-6">
+                {%  include 'VictoireCoreBundle:Widget/Form/stylize:static.html.twig' %}
+            </div>
+            <div class="vic-col-md-6">
+                {%  include 'VictoireCoreBundle:Widget/Form/stylize:responsive.html.twig' %}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleStyleTab(el) {
+        $vic(el).parent().find('.vic-style-form-container').slideToggle(400, function() {
+           if ($vic(this).is(':visible')) {
+               $vic(this).parents().find('.vic-style-container').css('height', '350px');
+               $vic(this).parents().find('.vic-style-container').css('overflow', 'scroll');
+           } else {
+               $vic(this).parents().find('.vic-style-container').css('height', 'auto');
+               $vic(this).parents().find('.vic-style-container').css('overflow', 'auto');
+           }
+        });
+    }
+</script>

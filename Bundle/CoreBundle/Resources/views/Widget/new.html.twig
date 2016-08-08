@@ -9,6 +9,7 @@
                 {% block form_entity %}
                     <div id="picker{% if entity %}-{{ entity }}{% endif %}-{{ quantum }}-{{ form.mode.vars.data }}" class="entity vic-tab-pane {% if form.mode.vars.data == widget.mode %}vic-active{% endif %}">
                         {{ form_start(form) }}
+                        {%  include 'VictoireCoreBundle:Widget/Form/stylize:edit.html.twig' %}
                         {{ form_rest(form) }}
                         {{ form_end(form) }}
                     </div>
@@ -16,6 +17,7 @@
             {% else %}
                 {% block form_static %}
                     {{ form_start(form) }}
+                    {%  include 'VictoireCoreBundle:Widget/Form/stylize:edit.html.twig' %}
                     {{ form_end(form) }}
                 {% endblock form_static %}
             {% endif %}
