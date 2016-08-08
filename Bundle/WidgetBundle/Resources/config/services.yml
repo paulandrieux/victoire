@@ -80,6 +80,11 @@ services:
         tags:
             - { name: twig.extension }
 
+    victoire_widget.widget_style_builder:
+        class: Victoire\Bundle\WidgetBundle\Form\Builder\WidgetStyleBuilder
+        arguments:
+            - @kernel
+            - @file_locator
     victoire_widget.widget_style_type:
         class: Victoire\Bundle\WidgetBundle\Form\WidgetStyleType
         arguments:

@@ -216,6 +216,7 @@ class WidgetFormBuilder
                 'position'           => $position,
                 'parentWidgetMap'    => $parentWidgetMap,
                 'quantum'            => $quantum,
+                'styleFormBuilder'   => $this->container->get('victoire_widget.widget_style_builder'),
             ];
             $action = 'victoire_core_widget_create';
             if ($businessEntityId) {
@@ -256,6 +257,7 @@ class WidgetFormBuilder
             'action'                => $formUrl,
             'method'                => 'POST',
             'dataSources'           => $this->container->get('victoire_criteria.chain.data_source_chain'),
+            'styleFormBuilder'      => $this->container->get('victoire_widget.widget_style_builder'),
         ]);
 
         $event = new WidgetFormCreateEvent($optionsContainer, $widgetFormTypeClass);
