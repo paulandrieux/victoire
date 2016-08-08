@@ -109,7 +109,7 @@ class WidgetManager
             $widget = $this->widgetHelper->newWidgetInstance($type, $view, $slot, $mode);
             $widgets = ['static' => $widget];
         } else {
-            $widget = $this->duplicateWidgetStyle($widget);
+            $widget = $this->duplicateWidget($widget);
             $widgets = [$widget->getMode() => $widget];
         }
 
@@ -404,7 +404,7 @@ class WidgetManager
         return $entityCopy;
     }
 
-    private function duplicateWidgetStyle(Widget $widget)
+    private function duplicateWidget(Widget $widget)
     {
         $propertyAccessor = new PropertyAccessor();
         $widgetClass = get_class($widget);
@@ -412,12 +412,15 @@ class WidgetManager
 
         $styleTrait = new \ReflectionClass('Victoire\Bundle\WidgetBundle\Entity\Traits\StyleTrait');
 
+        // Duplicate style
         foreach ($styleTrait->getProperties() as $property) {
             if (!$property->isStatic()) {
                 $value = $propertyAccessor->getValue($widget, $property->getName());
                 $propertyAccessor->setValue($duplicate, $property->getName(), $value);
             }
         }
+
+        // Duplicate responsibe style
         foreach ($styleTrait->getTraits() as $responsiveTrait) {
             foreach ($responsiveTrait->getProperties() as $property) {
                 if (!$property->isStatic()) {
@@ -426,6 +429,7 @@ class WidgetManager
                 }
             }
         }
+        $duplicate->setChildrenSlot($widget->getChildrenSlot());
 
         return $duplicate;
     }

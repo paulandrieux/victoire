@@ -54,6 +54,7 @@ class WidgetType extends AbstractType
         $builder->add('mode', HiddenType::class, [
             'data' => $options['mode'],
         ]);
+        $builder->add('childrenSlot', HiddenType::class);
         $builder->add('asynchronous', null, [
                 'label'    => 'victoire.widget.type.asynchronous.label',
                 'required' => false,
