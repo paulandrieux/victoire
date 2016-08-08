@@ -85,13 +85,6 @@ services:
         arguments:
             - @kernel
             - @file_locator
-    victoire_widget.widget_style_type:
-        class: Victoire\Bundle\WidgetBundle\Form\WidgetStyleType
-        arguments:
-            - @kernel
-            - @file_locator
-        tags:
-            - { name: form.type }
 
     victoire_widget.cache.widget_cache_clearer:
         class: Victoire\Bundle\WidgetBundle\Cache\WidgetCacheClearer

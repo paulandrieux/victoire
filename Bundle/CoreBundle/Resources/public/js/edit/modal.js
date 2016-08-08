@@ -47,9 +47,7 @@ $vic(document).on('click', 'a.vic-hover-widget', function(event) {
 
     var role = $vic('body').attr('role');
     if (typeof role !== typeof undefined && role !== false) {
-        if (role == "admin-style") {
-            var route = 'victoire_core_widget_stylize';
-        } else if (role == "admin-edit") {
+        if (role == "admin-edit") {
             var route = 'victoire_core_widget_edit';
         }
 

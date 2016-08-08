@@ -11,7 +11,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Victoire\Bundle\CriteriaBundle\Entity\Criteria;
 use Victoire\Bundle\CriteriaBundle\Form\Type\CriteriaType;
-use Victoire\Bundle\WidgetBundle\Form\WidgetStyleType;
 use Victoire\Bundle\WidgetBundle\Model\Widget;
 
 /**
