@@ -42,11 +42,15 @@ Feature: Stylize a widget
     Then I should see "Style"
     Then I follow "Style"
     When I fill in "_a_static_widget_force[containerPadding]" with "100px"
-    When I select "image" from "_a_static_widget_force[containerBackgroundType]"
+    Then I fill in "_a_static_widget_force[containerPaddingXS]" with "100px"
+    Then I select "image" from "_a_static_widget_force[containerBackgroundType]"
+    Then I wait 2 seconds
+    And I follow "Style"
     Then I should find css element "input" with selector "name" and value "_a_static_widget_force[containerBackgroundImage]"
-    When I attach image with id "1" to victoire field "_a_static_widget_force_containerBackgroundImage_widget"
-    When I fill in "_a_static_widget_force[containerPaddingXS]" with "100px"
+    Then I attach image with id "1" to victoire field "_a_static_widget_force_containerBackgroundImage_widget"
     And I select "image" from "_a_static_widget_force[containerBackgroundTypeXS]"
+    Then I wait 2 seconds
+    And I follow "Style"
     Then I should find css element "input" with selector "name" and value "_a_static_widget_force[containerBackgroundImageXS]"
     When I attach image with id "2" to victoire field "_a_static_widget_force_containerBackgroundImageXS_widget"
     And I follow "Mettre à jour"
