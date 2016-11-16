@@ -511,7 +511,11 @@ abstract class View
      */
     public function setWidgetMaps($widgetMaps)
     {
-        $this->widgetMaps = $widgetMaps;
+        if (!$widgetMaps) {
+            $this->widgetMaps = new ArrayCollection();
+        } else {
+            $this->widgetMaps = $widgetMaps;
+        }
 
         return $this;
     }

@@ -1,0 +1,339 @@
+14786890374655:
+    id: 14786890374655
+    action: create
+    reference: 14786890374655
+    class: Acme\AppBundle\Entity\Jedi
+    entityId: 1
+    date: '2016-11-09 11:57:17'
+    data:
+        id: 1
+        name: test
+        midiChlorians: 1
+        slug: test
+        createdAt: '2011-01-01 00:00:00'
+        updatedAt: '2011-01-01 00:00:00'
+        visibleOnFront: true
+        side: both
+        author:
+            id: null
+            reference: null
+14786891590583:
+    id: !!float 14786891590583
+    action: create
+    reference: 14786891590583
+    class: Acme\AppBundle\Entity\Jedi
+    entityId: 5
+    date: '2016-11-09 11:59:19'
+    data:
+        id: 5
+        name: test
+        midiChlorians: 1
+        slug: test
+        createdAt: '2011-01-01 00:00:00'
+        updatedAt: '2011-01-01 00:00:00'
+        visibleOnFront: true
+        side: both
+        author:
+            id: null
+            reference: null
+14786980901530:
+    id: 14786980901530
+    action: create
+    reference: 14786980901530
+    class: Victoire\Widget\TextBundle\Entity\WidgetText
+    entityId: 1
+    date: '2016-11-09 14:28:10'
+    data:
+        id: 1
+        slot: null
+        childrenSlot: 5823246943dfc
+        theme: null
+        asynchronous: false
+        fields: {  }
+        mode: static
+        quantum: null
+        containerTag: div
+        containerClass: null
+        containerWidth: null
+        containerHeight: null
+        containerMargin: null
+        containerPadding: null
+        textAlign: null
+        containerBackground: null
+        containerBackgroundType: null
+        containerBackgroundRepeat: null
+        containerBackgroundPosition: null
+        containerBackgroundSize: null
+        containerBackgroundColor: null
+        containerBackgroundOverlay: null
+        containerMarginXS: null
+        containerPaddingXS: null
+        containerWidthXS: null
+        containerHeightXS: null
+        textAlignXS: null
+        containerBackgroundXS: null
+        containerBackgroundTypeXS: null
+        containerBackgroundRepeatXS: null
+        containerBackgroundPositionXS: null
+        containerBackgroundSizeXS: null
+        containerBackgroundColorXS: null
+        containerBackgroundOverlayXS: null
+        containerMarginSM: null
+        containerPaddingSM: null
+        containerWidthSM: null
+        containerHeightSM: null
+        textAlignSM: null
+        containerBackgroundSM: null
+        containerBackgroundTypeSM: null
+        containerBackgroundRepeatSM: null
+        containerBackgroundPositionSM: null
+        containerBackgroundSizeSM: null
+        containerBackgroundColorSM: null
+        containerBackgroundOverlaySM: null
+        containerMarginMD: null
+        containerPaddingMD: null
+        containerWidthMD: null
+        containerHeightMD: null
+        textAlignMD: null
+        containerBackgroundMD: null
+        containerBackgroundTypeMD: null
+        containerBackgroundRepeatMD: null
+        containerBackgroundPositionMD: null
+        containerBackgroundSizeMD: null
+        containerBackgroundColorMD: null
+        containerBackgroundOverlayMD: null
+        containerMarginLG: null
+        containerPaddingLG: null
+        containerWidthLG: null
+        containerHeightLG: null
+        textAlignLG: null
+        containerBackgroundLG: null
+        containerBackgroundTypeLG: null
+        containerBackgroundRepeatLG: null
+        containerBackgroundPositionLG: null
+        containerBackgroundSizeLG: null
+        containerBackgroundColorLG: null
+        containerBackgroundOverlayLG: null
+        query: null
+        orderBy: null
+        businessEntityId: null
+        createdAt: '2016-11-09 14:28:09'
+        updatedAt: '2016-11-09 14:28:09'
+        content: test
+        excerpt: null
+        entityProxy:
+            id: null
+            reference: null
+        view:
+            id: null
+            reference: null
+        widgetMap:
+            id: null
+            reference: null
+        criterias: {  }
+        containerBackgroundImage:
+            id: null
+            reference: null
+        containerBackgroundImageXS:
+            id: null
+            reference: null
+        containerBackgroundImageSM:
+            id: null
+            reference: null
+        containerBackgroundImageMD:
+            id: null
+            reference: null
+        containerBackgroundImageLG:
+            id: null
+            reference: null
+14786980903112:
+    id: 14786980903112
+    action: update
+    reference: '14786980901530'
+    class: Victoire\Widget\TextBundle\Entity\WidgetText
+    entityId: 1
+    date: '2016-11-09 14:28:10'
+    data:
+        id: 1
+        slot: null
+        childrenSlot: 5823246943dfc
+        theme: null
+        asynchronous: false
+        fields: {  }
+        mode: static
+        quantum: null
+        containerTag: div
+        containerClass: null
+        containerWidth: null
+        containerHeight: null
+        containerMargin: null
+        containerPadding: null
+        textAlign: null
+        containerBackground: null
+        containerBackgroundType: null
+        containerBackgroundRepeat: null
+        containerBackgroundPosition: null
+        containerBackgroundSize: null
+        containerBackgroundColor: null
+        containerBackgroundOverlay: null
+        containerMarginXS: null
+        containerPaddingXS: null
+        containerWidthXS: null
+        containerHeightXS: null
+        textAlignXS: null
+        containerBackgroundXS: null
+        containerBackgroundTypeXS: null
+        containerBackgroundRepeatXS: null
+        containerBackgroundPositionXS: null
+        containerBackgroundSizeXS: null
+        containerBackgroundColorXS: null
+        containerBackgroundOverlayXS: null
+        containerMarginSM: null
+        containerPaddingSM: null
+        containerWidthSM: null
+        containerHeightSM: null
+        textAlignSM: null
+        containerBackgroundSM: null
+        containerBackgroundTypeSM: null
+        containerBackgroundRepeatSM: null
+        containerBackgroundPositionSM: null
+        containerBackgroundSizeSM: null
+        containerBackgroundColorSM: null
+        containerBackgroundOverlaySM: null
+        containerMarginMD: null
+        containerPaddingMD: null
+        containerWidthMD: null
+        containerHeightMD: null
+        textAlignMD: null
+        containerBackgroundMD: null
+        containerBackgroundTypeMD: null
+        containerBackgroundRepeatMD: null
+        containerBackgroundPositionMD: null
+        containerBackgroundSizeMD: null
+        containerBackgroundColorMD: null
+        containerBackgroundOverlayMD: null
+        containerMarginLG: null
+        containerPaddingLG: null
+        containerWidthLG: null
+        containerHeightLG: null
+        textAlignLG: null
+        containerBackgroundLG: null
+        containerBackgroundTypeLG: null
+        containerBackgroundRepeatLG: null
+        containerBackgroundPositionLG: null
+        containerBackgroundSizeLG: null
+        containerBackgroundColorLG: null
+        containerBackgroundOverlayLG: null
+        query: null
+        orderBy: null
+        businessEntityId: null
+        createdAt: '2016-11-09 14:28:09'
+        updatedAt: '2016-11-09 14:28:10'
+        content: test
+        excerpt: null
+        entityProxy:
+            id: null
+            reference: null
+        view:
+            id: null
+            reference: null
+        widgetMap:
+            id: 5
+            reference: 14786980902400
+        criterias: {  }
+        containerBackgroundImage:
+            id: null
+            reference: null
+        containerBackgroundImageXS:
+            id: null
+            reference: null
+        containerBackgroundImageSM:
+            id: null
+            reference: null
+        containerBackgroundImageMD:
+            id: null
+            reference: null
+        containerBackgroundImageLG:
+            id: null
+            reference: null
+14786980902723:
+    id: 14786980902723
+    action: update
+    reference: null
+    class: Victoire\Bundle\PageBundle\Entity\Page
+    entityId: 2
+    date: '2016-11-09 14:28:10'
+    data:
+        id: 2
+        bodyId: null
+        bodyClass: null
+        position: 0
+        lft: 1
+        lvl: 0
+        rgt: 4
+        root: 2
+        undeletable: true
+        cssHash: 8807adb8bb9809d87e4c5b44cae5a2aea3c5352c
+        widgetMap: '[]'
+        cssUpToDate: true
+        roles: null
+        createdAt: '2005-09-03 15:19:25'
+        updatedAt: '2016-11-09 14:28:10'
+        status: published
+        publishedAt: '2010-02-01 22:55:34'
+        homepage: true
+        parent:
+            id: null
+            reference: null
+        children:
+            0:
+                id: 3
+                reference: null
+        template:
+            id: 1
+            reference: null
+        widgets: {  }
+        translations:
+            0:
+                id: 3
+                reference: null
+            1:
+                id: 4
+                reference: null
+        author:
+            id: 1
+            reference: null
+        seo:
+            id: null
+            reference: null
+        referers: {  }
+14786980902400:
+    id: 14786980902400
+    action: create
+    reference: 14786980902400
+    class: Victoire\Bundle\WidgetMapBundle\Entity\WidgetMap
+    entityId: 5
+    date: '2016-11-09 14:28:10'
+    data:
+        id: 5
+        action: create
+        asynchronous: false
+        position: null
+        slot: main_content
+        view:
+            id: 2
+            reference: null
+        widget:
+            id: null
+            reference: null
+        replaced:
+            id: null
+            reference: null
+        substitutes: {  }
+        parent:
+            id: null
+            reference: null
+        widgets:
+            0:
+                id: 1
+                reference: 14786980903112

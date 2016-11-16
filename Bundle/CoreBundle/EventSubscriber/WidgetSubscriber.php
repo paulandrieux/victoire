@@ -74,7 +74,7 @@ class WidgetSubscriber implements EventSubscriber
 
             /* @var Widget $entity */
             $widgetMap = $entity->getWidgetMap();
-            if ($widgetMap->getAction() !== WidgetMap::ACTION_DELETE) {
+            if ($widgetMap && $widgetMap->getAction() !== WidgetMap::ACTION_DELETE) {
                 $view = $widgetMap->getView();
                 if ($this->em->contains($view)) {
                     $this->updateViewCss($view);

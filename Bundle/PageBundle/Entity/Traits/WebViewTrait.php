@@ -51,7 +51,7 @@ trait WebViewTrait
      *
      * @return WebViewTrait
      */
-    public function setSeo(PageSeo $seo)
+    public function setSeo(PageSeo $seo = null)
     {
         $this->seo = $seo;
 

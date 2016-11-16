@@ -1,0 +1,38 @@
+14786841792449:
+    id: 14786841792449
+    action: create
+    reference: 14786841792449
+    class: Acme\AppBundle\Entity\Jedi
+    entityId: 1
+    date: '2016-11-09 10:36:19'
+    data:
+        id: 1
+        name: test
+        midiChlorians: 3
+        slug: test
+        createdAt: '2011-01-01 00:00:00'
+        updatedAt: '2011-01-01 00:00:00'
+        visibleOnFront: true
+        side: both
+        author:
+            id: null
+            reference: null
+14786856509005:
+    id: 14786856509005
+    action: create
+    reference: 14786856509006
+    class: Acme\AppBundle\Entity\Jedi
+    entityId: 2
+    date: '2016-11-09 11:00:50'
+    data:
+        id: 2
+        name: test2
+        midiChlorians: 1
+        slug: test2
+        createdAt: '2011-01-01 00:00:00'
+        updatedAt: '2011-01-01 00:00:00'
+        visibleOnFront: true
+        side: both
+        author:
+            id: null
+            reference: null

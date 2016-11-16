@@ -153,7 +153,7 @@ class Widget extends BaseWidget implements VictoireQueryInterface
      *
      * @param BaseEntityProxy $entityProxy
      */
-    public function setEntityProxy(BaseEntityProxy $entityProxy)
+    public function setEntityProxy(BaseEntityProxy $entityProxy = null)
     {
         $this->entityProxy = $entityProxy;
     }

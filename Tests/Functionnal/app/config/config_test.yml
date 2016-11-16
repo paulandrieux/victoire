@@ -1,5 +1,4 @@
 imports:
-    - { resource: parameters.yml }
     - { resource: @VictoireCoreBundle/Resources/config/config.yml }
     - { resource: @VictoireTwigBundle/Resources/config/config.yml }
 

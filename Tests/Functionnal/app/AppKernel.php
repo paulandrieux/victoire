@@ -12,7 +12,7 @@ class AppKernel extends Kernel
      */
     public function registerBundles()
     {
-        return [
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -70,6 +70,11 @@ class AppKernel extends Kernel
             new Victoire\Widget\TextBundle\VictoireWidgetTextBundle(),
             new Acme\AppBundle\AcmeAppBundle(),
         ];
+        if (in_array($this->getEnvironment(), array('record'))) {
+            $bundles[] = new AppVentus\DataMigrationBundle\AppVentusDataMigrationBundle();
+        }
+
+        return $bundles;
     }
 
     /**
