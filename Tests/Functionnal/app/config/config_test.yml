@@ -58,8 +58,7 @@ assetic:
 doctrine:
     dbal:
         driver:   "pdo_mysql"
-        host:     "127.0.0.1"
-        port:     "3306"
+        host:     %dbhost%
         dbname:   %dbname%
         user:     %dbuser%
         password: %dbpassword%
@@ -162,7 +161,7 @@ snc_redis:
         victoire:
             type: predis
             alias: victoire
-            dsn: redis://localhost
+            dsn: %redis-dns%
 
 parameters:
     locale: fr
