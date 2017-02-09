@@ -8,7 +8,7 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 /**
  * @ORM\Entity
  * @ORM\Table(name="vic_view_translations_legacy",
- *     uniqueConstraints={@ORM\UniqueConstraint(name="lookup_unique_idx", columns={
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="view_translation_legacy_unique_idx", columns={
  *         "locale", "object_id", "field"
  *     })}
  * )
