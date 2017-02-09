@@ -8,7 +8,7 @@ doctrine:
         query_cache_driver: redis
     dbal:
         driver:   "pdo_sqlite"
-        path:     %kernel.cache_dir%/test.db
+        path:     /tmp/test.db
         user:     %dbuser%
         password: %dbpassword%
 
