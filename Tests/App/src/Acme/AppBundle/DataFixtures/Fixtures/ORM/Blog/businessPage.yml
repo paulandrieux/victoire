@@ -2,11 +2,11 @@ Victoire\Bundle\BusinessPageBundle\Entity\BusinessPage:
     bep_article_i_m_your_father:
         currentLocale: fr
         name: "I'm your father."
-        author: @anakin
-        template: @template_article
+        author: "@anakin"
+        template: "@template_article"
         status: published
-        parent: @blog-jedi-network
-        entityProxy: @ep_article_i_m_your_father
+        parent: "@blog-jedi-network"
+        entityProxy: "@ep_article_i_m_your_father"
         publishedAt: <dateTime('now')>
         createdAt: <dateTime('now')>
         updatedAt: <dateTime('now')>
@@ -18,4 +18,4 @@ Victoire\Bundle\I18nBundle\Entity\ViewTranslation:
         name: "I'm your father."
         slug: "I-m-your-father"
         locale: en
-        translatable: @bep_article_i_m_your_father
+        translatable: "@bep_article_i_m_your_father"

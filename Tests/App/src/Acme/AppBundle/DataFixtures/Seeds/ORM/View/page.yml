@@ -12,8 +12,8 @@ Victoire\Bundle\I18nBundle\Entity\ViewTranslation:
 Victoire\Bundle\PageBundle\Entity\Page:
     home:
         currentLocale: fr
-        template: @template_base
-        author: @anakin
+        template: "@template_base"
+        author: "@anakin"
         name: Page d'accueil
         slug: home
         homepage: true
@@ -23,14 +23,14 @@ Victoire\Bundle\PageBundle\Entity\Page:
         createdAt: <dateTime('now')>
         updatedAt: <dateTime('now')>
         cssUpToDate: false
-        translations: [@home_en]
+        translations: ["@home_en"]
 
     test:
         currentLocale: fr
-        template: @template_base
-        author: @anakin
+        template: "@template_base"
+        author: "@anakin"
         name: Test
-        parent: @home
+        parent: "@home"
         slug: test
         homepage: false
         undeletable: false
@@ -39,4 +39,4 @@ Victoire\Bundle\PageBundle\Entity\Page:
         createdAt: <dateTime('now')>
         updatedAt: <dateTime('now')>
         cssUpToDate: false
-        translations: [@test_en]
+        translations: ["@test_en"]

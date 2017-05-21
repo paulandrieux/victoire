@@ -4,11 +4,11 @@ Victoire\Bundle\BlogBundle\Entity\ArticleTemplate:
         name: "{{item.name}}"
         backendName: "First blog template"
         slug: "{{item.slug}}"
-        businessEntity: @article_business_entity
-        author: @anakin
-        template: @template_base
+        businessEntity: "@article_business_entity"
+        author: "@anakin"
+        template: "@template_base"
         status: published
-        parent: @blog-jedi-network
+        parent: "@blog-jedi-network"
         publishedAt: <dateTime('now')>
         createdAt: <dateTime('now')>
         updatedAt: <dateTime('now')>
@@ -18,11 +18,11 @@ Victoire\Bundle\BlogBundle\Entity\ArticleTemplate:
         name: "{{item.name}}"
         backendName: "Second blog template"
         slug: "{{item.slug}}"
-        businessEntity: @article_business_entity
-        author: @anakin
-        template: @template_base
+        businessEntity: "@article_business_entity"
+        author: "@anakin"
+        template: "@template_base"
         status: published
-        parent: @blog-jedi-network
+        parent: "@blog-jedi-network"
         publishedAt: <dateTime('now')>
         createdAt: <dateTime('now')>
         updatedAt: <dateTime('now')>
@@ -33,9 +33,9 @@ Victoire\Bundle\I18nBundle\Entity\ViewTranslation:
         name: "{{item.name}}"
         slug: "{{item.slug}}"
         locale: en
-        translatable: @template_article
+        translatable: "@template_article"
     template_article_2_en_name:
         name: "{{item.name}}"
         slug: "{{item.slug}}"
         locale: en
-        translatable: @template_article_2
+        translatable: "@template_article_2"
