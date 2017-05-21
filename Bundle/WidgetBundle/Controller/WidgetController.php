@@ -213,7 +213,6 @@ class WidgetController extends Controller
         try {
             $response = new JsonResponse(
                 $this->get('widget_manager')->editWidget(
-                    $this->get('request'),
                     $widget,
                     $view,
                     $quantum,
@@ -278,7 +277,7 @@ class WidgetController extends Controller
                     ]
                 );
 
-                $form->handleRequest($this->get('request'));
+                $form->handleRequest($request);
                 if ($request->query->get('novalidate', false) === false && $form->isValid()) {
                     if ($form->has('deleteBackground') && $form->get('deleteBackground')->getData()) {
                         // @todo: dynamic responsive key
