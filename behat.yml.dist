@@ -30,7 +30,14 @@ default:
              clean_start: false
          Behat\MinkExtension\ServiceContainer\MinkExtension:
              base_url:           'http://anakin@victoire.io:test@fr.victoire.io:8000/app_ci.php'
-             selenium2: ~
+             selenium2:
+                 wd_host: 127.0.0.1:4444/wd/hub
+                 capabilities:
+                     chrome:
+                         switches:
+                             - "--headless"
+                             - "--disable-gpu"
+                             - "--window-size=1600,1400"
              goutte: ~
              symfony2: ~
              default_session:    symfony2

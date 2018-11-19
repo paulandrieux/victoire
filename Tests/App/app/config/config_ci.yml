@@ -7,6 +7,10 @@ doctrine:
         metadata_cache_driver: redis
         query_cache_driver: redis
 
+framework:
+    default_locale:  "fr"
+    translator:      { fallback: "fr" }
+
 snc_redis:
     clients:
         doctrine:

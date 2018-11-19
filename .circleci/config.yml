@@ -1,0 +1,71 @@
+# This configuration was automatically generated from a CircleCI 1.0 config.
+# It should include any build commands you had along with commands that CircleCI
+# inferred from your project structure. We strongly recommend you read all the
+# comments in this file to understand the structure of CircleCI 2.0, as the idiom
+# for configuration has changed substantially in 2.0 to allow arbitrary jobs rather
+# than the prescribed lifecycle of 1.0. In general, we recommend using this generated
+# configuration as a reference rather than using it in production, though in most
+# cases it should duplicate the execution of your original 1.0 config.
+version: 2
+jobs:
+  build:
+    shell: /bin/bash --login
+    # CircleCI 2.0 does not support environment variables that refer to each other the same way as 1.0 did.
+    # If any of these refer to each other, rewrite them so that they don't or see https://circleci.com/docs/2.0/env-vars/#interpolating-environment-variables-to-set-other-environment-variables .
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    docker:
+    - image: troopers/docker-images:ci-victoire
+    steps:
+    - checkout
+    - run: 'echo 127.0.0.1 fr.victoire.io >> /etc/hosts'
+    - run: 'echo 127.0.0.1 en.victoire.io >> /etc/hosts'
+    - run:
+        name: "Pull Submodules"
+        command: |
+          git submodule init
+          git submodule update --remote
+    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+    - run: 'echo ''Europe/Paris'' | tee -a /etc/timezone; dpkg-reconfigure
+          -f noninteractive tzdata; service mysql restart;  '
+    - run: |-
+          printf '127.0.0.1       fr.victoire.io
+          127.0.0.1       en.victoire.io
+          ' | tee -a /etc/hosts
+    - run: 'redis-cli ping >/dev/null 2>&1 || service redis-server start; '
+    #   This would typically go in either a build or a build-and-test job when using workflows
+    # Restore the dependency cache
+    - restore_cache:
+        keys:
+        # This branch if available
+        - v1-dep-{{ .Branch }}-
+        # Default branch if not
+        - v1-dep-2.1-
+        # Any branch if there are none on the default branch - this should be unnecessary if you have your default branch configured correctly
+        - v1-dep-
+    # This is based on your 1.0 configuration file or project settings
+    - run: npm install less@2.7.2
+    - run: php --run "readfile('https://getcomposer.org/installer');" > composer-setup.php
+    - run: php composer-setup.php
+    - run: mkdir --parent vendor
+    - run: mv composer.phar /usr/bin/composer
+    - run: rm composer-setup.php
+    - run: php -d memory_limit=2048M /usr/bin/composer install --prefer-dist
+    - run: cp Tests/App/app/config/parameters.yml.dist Tests/App/app/config/parameters.yml
+    - run: cp behat.yml.dist behat.yml
+    - run: chmod +x victoire-test-suite/dependencies.sh
+    - run: victoire-test-suite/dependencies.sh victoire/victoire
+    - run: chmod +x victoire-test-suite/circle.sh
+    - run: victoire-test-suite/circle.sh victoire/victoire
+    - run: vendor/bin/phpunit
+
+    #- run: bash circle-behat.sh Tests/Features
+    - store_test_results:
+        path: /tmp/circleci-test-results
+    - store_artifacts:
+        path: /tmp/circleci-artifacts
+    - store_artifacts:
+        path: fails
+    - store_artifacts:
+        path: /tmp/circleci-test-results
