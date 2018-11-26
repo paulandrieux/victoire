@@ -15,19 +15,19 @@ class CoverageContext implements Context
     /** @BeforeSuite */
     public static function setup()
     {
-        if (!self::$coverage) {
-            $filter = new \PHP_CodeCoverage_Filter();
-            $filter->addDirectoryToBlacklist(__DIR__.'/../../../vendor');
-            $filter->addDirectoryToWhitelist(__DIR__.'/../../../Bundle');
-            self::$coverage = new \PHP_CodeCoverage(null, $filter);
-        }
+//        if (!self::$coverage) {
+////            $filter = new \PHP_CodeCoverage_Filter();
+////            $filter->addDirectoryToBlacklist(__DIR__.'/../../../vendor');
+////            $filter->addDirectoryToWhitelist(__DIR__.'/../../../Bundle');
+////            self::$coverage = new \PHP_CodeCoverage(null, $filter);
+//        }
     }
 
     /** @AfterSuite */
     public static function tearDown()
     {
-        $writer = new \PHP_CodeCoverage_Report_HTML();
-        $writer->process(self::$coverage, sys_get_temp_dir().'/Victoire/logs/coverage');
+//        $writer = new \PHP_CodeCoverage_Report_HTML();
+//        $writer->process(self::$coverage, sys_get_temp_dir().'/Victoire/logs/coverage');
     }
 
     private function getCoverageKeyFromScope(BeforeScenarioScope $scope)
@@ -42,12 +42,12 @@ class CoverageContext implements Context
      */
     public function startCoverage(BeforeScenarioScope $scope)
     {
-        self::$coverage->start($this->getCoverageKeyFromScope($scope));
+//        self::$coverage->start($this->getCoverageKeyFromScope($scope));
     }
 
     /** @AfterScenario */
     public function stopCoverage()
     {
-        self::$coverage->stop();
+//        self::$coverage->stop();
     }
 }
