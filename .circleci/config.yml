@@ -16,7 +16,7 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     docker:
-    - image: troopers/docker-images:ci-victoire
+    - image: nicolastropers/ci-victoire-php72
     steps:
     - checkout
     - run: 'echo 127.0.0.1 fr.victoire.io >> /etc/hosts'
