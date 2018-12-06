@@ -59,12 +59,12 @@ jobs:
     - run: nohup java -jar vendor/selenium.jar &> /dev/null &
     - run: nohup Xvfb :99 -ac 2>/dev/null &
     - run: sleep 3
-    - run: nohup php Tests/App/bin/console --env=ci server:run 127.0.0.1:8000 -q -r Tests/App/app/config/router_ci.php -d ./Tests/App/web &
+    - run: (nohup php Tests/App/bin/console --env=ci server:run 127.0.0.1:8000 -q -r Tests/App/app/config/router_ci.php -d ./Tests/App/web &) && vendor/bin/behat --format=pretty
     #    - run: chmod +x victoire-test-suite/dependencies.sh
     #    - run: victoire-test-suite/dependencies.sh victoire/victoire
     #    - run: chmod +x victoire-test-suite/circle.sh
     #    - run: victoire-test-suite/circle.sh victoire/victoire
-    - run: vendor/bin/behat --format=pretty
+    #    - run: vendor/bin/behat --format=pretty
     - run: vendor/bin/phpunit
 
     #- run: bash circle-behat.sh Tests/Features
