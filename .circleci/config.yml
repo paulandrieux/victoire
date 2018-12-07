@@ -47,10 +47,10 @@ jobs:
     - run: chmod 777 fails
     - run: wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar -O vendor/selenium.jar
     - run:
-        command: java -jar vendor/selenium.jar
+        command: Xvfb :99 -ac
         background: true
     - run:
-        command: Xvfb :99 -ac
+        command: java -jar vendor/selenium.jar
         background: true
     - run: sleep 3
     - run:
