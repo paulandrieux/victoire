@@ -32,7 +32,7 @@ bower: ## Install bower depedencies
 bower: Bundle/UIBundle/Resources/public/bower_components
 
 Bundle/UIBundle/Resources/public/bower_components: Bundle/UIBundle/Resources/config/bower.json
-	(cd Bundle/UIBundle/Resources/config/ && bower install)
+	(cd Bundle/UIBundle/Resources/config/ && bower install --allow-root)
 
 db: ## Initialize a database
 db: vendor
