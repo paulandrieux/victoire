@@ -15,6 +15,7 @@ jobs:
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      ENV: ci
     docker:
     - image: troopers/docker-images:ci-victoire
     steps:
@@ -36,35 +37,28 @@ jobs:
     - run: 'redis-cli ping >/dev/null 2>&1 || service redis-server start; '
     - run: php --run "readfile('https://getcomposer.org/installer');" > composer-setup.php
     - run: php composer-setup.php
-    - run: mkdir --parent vendor
     - run: mv composer.phar /usr/bin/composer
     - run: rm composer-setup.php
-    - run: cp Tests/App/app/config/parameters.yml.dist Tests/App/app/config/parameters.yml
-    - run: cp behat.yml.dist behat.yml
     - run: npm install less@2.7.2
+    - run: make install
     - run: mkdir fails
     - run: chmod 777 fails
-    - run: php -d memory_limit=2048M /usr/bin/composer install --prefer-dist
-    - run: '(cd Bundle/UIBundle/Resources/config/ && bower install --allow-root)'
-    - run: php Tests/App/bin/console --env=ci doctrine:database:create --no-debug
-    - run: php Tests/App/bin/console --env=ci doctrine:schema:create --no-debug
-    - run: php Tests/App/bin/console --env=ci cache:clear --no-debug
-    - run: php Tests/App/bin/console --env=ci victoire:ui:fetchAssets ./Bundle/UIBundle/Resources/config --no-debug
-    - run: php Tests/App/bin/console --env=ci victoire:generate:view --no-debug
-    - run: php Tests/App/bin/console --env=ci bazinga:js-translation:dump --no-debug
-    - run: php Tests/App/bin/console --env=ci fos:js:dump --target="Tests/App/web/js/fos_js_routes_test.js" --no-debug
-    - run: php Tests/App/bin/console --env=ci assets:install Tests/App/web --no-debug
-    - run: php Tests/App/bin/console --env=ci assetic:dump --no-debug
     - run: wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar -O vendor/selenium.jar
-    - run: nohup java -jar vendor/selenium.jar &> /dev/null &
-    - run: nohup Xvfb :99 -ac 2>/dev/null &
+    - run:
+        command: java -jar vendor/selenium.jar
+        background: true
+    - run:
+        command: Xvfb :99 -ac
+        background: true
     - run: sleep 3
-    - run: (nohup php Tests/App/bin/console --env=ci server:run 127.0.0.1:8000 -q -r Tests/App/app/config/router_ci.php -d ./Tests/App/web &) && vendor/bin/behat --format=pretty
+    - run:
+        command: make start
+        background: true
     #    - run: chmod +x victoire-test-suite/dependencies.sh
     #    - run: victoire-test-suite/dependencies.sh victoire/victoire
     #    - run: chmod +x victoire-test-suite/circle.sh
     #    - run: victoire-test-suite/circle.sh victoire/victoire
-    #    - run: vendor/bin/behat --format=pretty
+    - run: vendor/bin/behat --format=pretty
     - run: vendor/bin/phpunit
 
     #- run: bash circle-behat.sh Tests/Features
