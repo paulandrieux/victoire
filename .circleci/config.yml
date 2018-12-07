@@ -20,6 +20,7 @@ jobs:
     - image: troopers/docker-images:ci-victoire
     steps:
     - checkout
+    - run: 'echo "memory_limit = 2048M" > /usr/local/etc/php/conf.d/memory.ini'
     - run: 'echo 127.0.0.1 fr.victoire.io >> /etc/hosts'
     - run: 'echo 127.0.0.1 en.victoire.io >> /etc/hosts'
     - run:
