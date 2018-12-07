@@ -16,6 +16,7 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
       ENV: ci
+      DISPLAY: :99
     docker:
     - image: troopers/docker-images:ci-victoire
     steps:
