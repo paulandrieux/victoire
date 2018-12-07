@@ -41,6 +41,7 @@ jobs:
     - run: mv composer.phar /usr/bin/composer
     - run: rm composer-setup.php
     - run: npm install less@2.7.2
+    - run: cp Tests/App/app/config/parameters.yml.dist Tests/App/app/config/parameters.yml
     - run: make install
     - run: mkdir fails
     - run: chmod 777 fails
