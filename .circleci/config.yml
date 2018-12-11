@@ -61,7 +61,9 @@ jobs:
     #    - run: victoire-test-suite/dependencies.sh victoire/victoire
     #    - run: chmod +x victoire-test-suite/circle.sh
     #    - run: victoire-test-suite/circle.sh victoire/victoire
-    - run: vendor/bin/behat --format=pretty
+    - run:
+        command: vendor/bin/behat --format=pretty
+        no_output_timeout: 3600
     - run: vendor/bin/phpunit
 
     #- run: bash circle-behat.sh Tests/Features
